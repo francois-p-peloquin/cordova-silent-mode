@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-silent-mode" version="0.9.0">
+
+    <name>SilentMode</name>
+
+    <description>The plugin allow to verify if the phone is currently in silent mode.</description>
+
+    <repo>https://github.com/salesfloor/cordova-silent-mode.git</repo>
+
+    <keywords>silent mode</keywords>
+
+    <license>Apache 2.0</license>
+
+    <author>Salesfloor</author>
+
+    <!-- cordova -->
+    <engines>
+        <engine name="cordova" version=">=3.6.0" />
+    </engines>
+
+
+    <!-- js -->
+    <js-module src="www/silent-mode.js" name="SilentModePlugin">
+        <clobbers target="SilentMode" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="SilentMode">
+                <param name="ios-package" value="CDVSilentModePlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/SharkfoodMuteSwitchDetector.h" />
+        <source-file src="src/ios/SharkfoodMuteSwitchDetector.m" />
+
+        <header-file src="src/ios/CDVSilentModePlugin.h" />
+        <source-file src="src/ios/CDVSilentModePlugin.m" />
+
+        <!-- <asset src="www/mute.caf" target="res/mute.caf" /> -->
+        <resource-file src="www/mute.caf" target="mute.caf" />
+    </platform>
+
+</plugin>
