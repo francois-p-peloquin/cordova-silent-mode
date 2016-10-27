@@ -19,6 +19,7 @@ SilentMode.isMuted(
 	}, function() {  //Callback
 		console.log('mute disabled'); 
 	});
+```
 
 ## Supported Platforms
 
