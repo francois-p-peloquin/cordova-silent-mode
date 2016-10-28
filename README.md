@@ -34,11 +34,11 @@ var Ringer = function(data) {
 
 Ringer.prototype = {
 	t: false,
-	dur: 50,
+	dur: 200,
 	init: function() {
 		var Obj = this;
+		// if (typeof SilentMode === 'undefined') console.log('no SilentMode'); return;
 		SilentMode.init();
-		Obj.check_ringer();
 	},
 	check_ringer: function(call) {
 		var Obj = this;
@@ -54,15 +54,27 @@ Ringer.prototype = {
 	listen_change: function(call) {
 		var Obj = this;
 		call = typeof call === 'function' ? call : function() {};
-		var r = Obj.cur;
-		Obj.t = setInterval(function() {
+		
+		var func = function(r) {
+			Obj.t = setInterval(function() {
+				Obj.check_ringer(function() {
+					if (r != Obj.cur) {
+						call();
+						clearInterval(Obj.t);
+					}
+				});
+			},Obj.dur);
+		};
+		if (typeof Obj.cur === 'undefined') {
 			Obj.check_ringer(function() {
-				if (r != Obj.cur) {
-					call();
-					clearInterval(Obj.t);
-				}
+				var r = Obj.cur;
+				func(r);
 			});
-		},Obj.dur);
+		}
+		else {
+			var r = Obj.cur;
+			func(r);
+		}
 	},
 	end: function() {
 		var Obj = this;
@@ -76,13 +88,11 @@ Ringer.prototype = {
 $$(document).on('deviceready',function() {
 	var Ring = new Ringer(); //Will run the Ringer.init() function
 	
-	//Do other things
+	//Time passes, other tasks accomplished
 	
-	var t = setTimeout(function() {
-	    Ring.listen_change(function() {
+	Ring.listen_change(function() {
 		console.log('the ringer position has changed');
-	    });
-	},10); //The delay is only necessary if called right after instantiating the object 
+	});
 	
 	//This would kill the loop checker so you don't bog down the system
 	//Ring.end(); 
