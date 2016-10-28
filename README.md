@@ -82,7 +82,10 @@ $$(document).on('deviceready',function() {
 	    Ring.listen_change(function() {
 		console.log('the ringer position has changed');
 	    });
-	},10); //The delay is necessary if called right after instantiating the object 
+	},10); //The delay is only necessary if called right after instantiating the object 
+	
+	//This would kill the loop checker so you don't bog down the system
+	//Ring.end(); 
 });
 ```
 
