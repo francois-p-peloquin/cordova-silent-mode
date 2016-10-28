@@ -37,7 +37,6 @@ Ringer.prototype = {
 	dur: 200,
 	init: function() {
 		var Obj = this;
-		// if (typeof SilentMode === 'undefined') console.log('no SilentMode'); return;
 		SilentMode.init();
 	},
 	check_ringer: function(call) {
