@@ -1,6 +1,6 @@
 ## Cordova Silent Mode
 
-This Cordova plugin checks if the phone has been set to silent mode. Pleas note that this only works for iOS at the moment.
+This Cordova plugin checks if the phone ringer has been set to silent mode. Pleas note that this only works for iOS at the moment.
 
 ## Installation
 
