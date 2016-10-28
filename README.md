@@ -1,6 +1,6 @@
 ## Cordova Silent Mode
 
-This plugin allow to verify, through phonegap, if the current device is in silent mode. Pleas note that this only works for iOS at the moment.
+This Cordova plugin checks if the phone has been set to silent mode. Pleas note that this only works for iOS at the moment.
 
 ## Installation
 
